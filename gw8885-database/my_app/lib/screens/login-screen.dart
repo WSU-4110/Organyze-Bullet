@@ -4,6 +4,9 @@ import 'package:organyzebullet_app/pallete.dart';
 import 'package:organyzebullet_app/widgets/widgets.dart';
 
 class LoginScreen extends StatelessWidget {
+
+
+
   @override
   Widget build(BuildContext context) {
     return Stack(

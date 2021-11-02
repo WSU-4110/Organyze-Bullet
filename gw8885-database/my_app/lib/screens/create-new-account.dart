@@ -1,14 +1,27 @@
 import 'dart:ui';
-
+import 'package:organyzebullet_app/database/dataModel.dart';
+import 'package:organyzebullet_app/database/message_dao.dart';
+import 'package:firebase_database/ui/firebase_animated_list.dart';
+//import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_database/firebase_database.dart';
+//import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:organyzebullet_app/pallete.dart';
 import 'package:organyzebullet_app/widgets/widgets.dart';
 
 
+
 class CreateNewAccount extends StatelessWidget {
+  //final Future<database> = FirebaseDatabase.instance.reference();
+  //FirebaseAuth auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
+    //final account = database.child('UID/');
+
+
     Size size = MediaQuery.of(context).size;
     return Stack(
       children: [
@@ -90,7 +103,17 @@ class CreateNewAccount extends StatelessWidget {
                     SizedBox(
                       height: 25,
                     ),
-                    RoundedButton(buttonName: 'Register'),
+                    ElevatedButton(
+                      onPressed: () => _sendMessage(),
+                      style: ElevatedButton.styleFrom(
+                        shape: new RoundedRectangleBorder(
+                          borderRadius: new BorderRadius.circular(16.0),
+                        ),
+                      ),
+                      child: Text(
+                          "Create Account"
+                      ),
+                    ),
                     SizedBox(
                       height: 30,
                     ),
@@ -121,8 +144,57 @@ class CreateNewAccount extends StatelessWidget {
               ],
             ),
           ),
-        )
+        ),
+       // FutureBuilder()
       ],
+
+    );
+
+  }
+
+
+  void _sendMessage() {
+    if (_canSendMessage()) {
+      final message = oUser("", 1,"","");
+      final messageDao = MessageDao();
+      print("hi");
+      messageDao.saveMessage(message);
+    }
+  }
+
+  /*Widget _getMessageList() {
+    return Expanded(
+      child: FirebaseAnimatedList(
+        query: widget.messageDao.getMessageQuery(),
+        itemBuilder: (context, snapshot, animation, index) {
+          final json = snapshot.value as Map<dynamic, dynamic>;
+          final message = oUser.fromJson(json);
+          return MessageWidget(message.text, message.date);
+        },
+      ),
     );
   }
+
+
+
+  void _scrollToBottom() {
+    if (_scrollController.hasClients) {
+      _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
+    }
+  }*/
+  bool _canSendMessage() => true;
+}
+
+class MessageList extends StatefulWidget {
+  MessageList({Key key}) : super(key: key);
+
+  final messageDao = MessageDao();
+
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    throw UnimplementedError();
+  }
+
+  //MessageListState createState() => MessageListState();
 }
