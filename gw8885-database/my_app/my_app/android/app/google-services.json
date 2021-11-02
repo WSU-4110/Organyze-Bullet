@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "706502382471",
+    "firebase_url": "https://organyze-bullet-default-rtdb.firebaseio.com",
+    "project_id": "organyze-bullet",
+    "storage_bucket": "organyze-bullet.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:706502382471:android:2ed927658a01aa6ae0b922",
+        "android_client_info": {
+          "package_name": "com.example.my_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "706502382471-j23cvpqg1ea73g0lfrl1r2tcomis3kka.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtBzeeBrVm2MXdmI0Y-wAREAvJ0iNrx5c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "706502382471-j23cvpqg1ea73g0lfrl1r2tcomis3kka.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
