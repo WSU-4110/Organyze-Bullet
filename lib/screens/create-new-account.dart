@@ -177,7 +177,7 @@ class CreateNewAccount extends StatelessWidget {
 }
 
 class MessageList extends StatefulWidget {
-  MessageList({Key key}) : super(key: key);
+  MessageList({Key? key}) : super(key: key);
 
   final messageDao = MessageDao();
 
