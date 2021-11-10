@@ -64,9 +64,9 @@ class Main
   
         System.out.println("User enter");
       // correct
-        user.signedUser();
+        notebook.signedUser();
       // incorrect
-        user.randomUser();
+        notebook.randomUser();
   
         System.out.println("Google");
       // ask to make an account
