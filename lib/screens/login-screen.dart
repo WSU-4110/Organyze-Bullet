@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:organyzebullet_app/pallete.dart';
 import 'package:organyzebullet_app/widgets/widgets.dart';
+import 'dart:ui';
+import 'package:flutter/services.dart';
+
 
 class LoginScreen extends StatelessWidget {
 
@@ -60,6 +63,21 @@ class LoginScreen extends StatelessWidget {
                     height: 25,
                   ),
                 ],
+              ),
+              GestureDetector(
+                  onTap: () => Navigator.pushNamed(context, 'viewEntries'),
+                  child: Container(
+                    child:Text(
+                      'Guest login',
+                      style: kBodyText,
+                    ),
+                    decoration: BoxDecoration(
+                     border:
+                       Border(bottom: BorderSide(width: 1, color: kWhite))),
+                    ),
+                  ),
+              SizedBox(
+                height: 25,
               ),
               GestureDetector(
                 onTap: () => Navigator.pushNamed(context, 'CreateNewAccount'),

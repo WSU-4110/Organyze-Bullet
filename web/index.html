@@ -30,10 +30,35 @@
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
+
+<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-database.js"></script>
+//<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
+
   <!-- This script installs service_worker.js to provide PWA functionality to
        application. For more information, see:
        https://developers.google.com/web/fundamentals/primers/service-workers -->
   <script>
+
+ // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.2.0/firebase-app.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyDXF-YIVTFZ1MhFu30M9IdqA7K1TNICPW8",
+    authDomain: "organyze-bullet.firebaseapp.com",
+    databaseURL: "https://organyze-bullet-default-rtdb.firebaseio.com",
+    projectId: "organyze-bullet",
+    storageBucket: "organyze-bullet.appspot.com",
+    messagingSenderId: "706502382471",
+    appId: "1:706502382471:web:92337d027cda0bc4e0b922"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+
     var serviceWorkerVersion = null;
     var scriptLoaded = false;
     function loadMainDartJs() {

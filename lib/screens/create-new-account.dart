@@ -1,8 +1,12 @@
 import 'dart:ui';
 import 'package:organyzebullet_app/database/dataModel.dart';
 import 'package:organyzebullet_app/database/message_dao.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:organyzebullet_app/database/auth.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
+//import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/firebase_database.dart';
+//import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -10,9 +14,29 @@ import 'package:organyzebullet_app/pallete.dart';
 import 'package:organyzebullet_app/widgets/widgets.dart';
 
 
+
 class CreateNewAccount extends StatelessWidget {
+  //final Future<database> = FirebaseDatabase.instance.reference();
+  //FirebaseAuth auth = FirebaseAuth.instance;
+    authCreateAcc auth = new authCreateAcc();
+
+
   @override
   Widget build(BuildContext context) {
+    int idNumo = 1;
+    int createErrCode = 0; // zero is no error at all, 1 is the password is too low, 2 is the email is already registers
+    //final account = database.child('UID/');
+    final usero = TextEditingController();
+    final emailo = TextEditingController();
+    final passwordo = TextEditingController();
+    final passwordchecko = TextEditingController();
+
+
+    usero.addListener(() => print('first text field: ${usero.text}'));
+    emailo.addListener(() => print('second text field: ${emailo.text}'));
+    passwordo.addListener(() => print('password text field: ${passwordo.text}'));
+    passwordchecko.addListener(() => print('check text field: ${passwordchecko.text}'));
+
     Size size = MediaQuery.of(context).size;
     return Stack(
       children: [
@@ -74,28 +98,36 @@ class CreateNewAccount extends StatelessWidget {
                       hint: 'User',
                       inputType: TextInputType.name,
                       inputAction: TextInputAction.next,
+                      myController: usero,
+
                     ),
                     TextInputField(
                       icon: FontAwesomeIcons.envelope,
                       hint: 'Email',
                       inputType: TextInputType.emailAddress,
                       inputAction: TextInputAction.next,
+                      myController: emailo,
                     ),
                     PasswordInput(
                       icon: FontAwesomeIcons.lock,
                       hint: 'Password',
                       inputAction: TextInputAction.next,
+                      myController: passwordo,
                     ),
                     PasswordInput(
                       icon: FontAwesomeIcons.lock,
                       hint: 'Confirm Password',
                       inputAction: TextInputAction.done,
+                      myController: passwordchecko,
                     ),
                     SizedBox(
                       height: 25,
                     ),
                     ElevatedButton(
-                      onPressed: () => _sendMessage(),
+                      onPressed: () => {
+                        idNumo = idNumo + 1,
+                        createUserWError(usero.text, emailo.text, passwordo.text, passwordchecko.text)
+                      },
                       style: ElevatedButton.styleFrom(
                         shape: new RoundedRectangleBorder(
                           borderRadius: new BorderRadius.circular(16.0),
@@ -141,51 +173,83 @@ class CreateNewAccount extends StatelessWidget {
 
     );
 
+
+
   }
 
 
-  void _sendMessage() {
+  Future<void> createUserWError(String User, String emailInput,String passwordInput,String confirmedPassword) async {
+    int createErrCode = 0;
+    if (passwordInput == confirmedPassword) {
+      auth.createUser(emailInput, passwordInput);
+    }
+    else{
+      createErrCode = 3;
+    }
+    //return createErrCode;
+  }
+
+
+  void _sendMessage(String nameWrite,int idNum, String emailWrite, String passwordWrite) {
     if (_canSendMessage()) {
-      final message = oUser("", 1,"","");
+      final message = oUser(nameWrite, idNum ,emailWrite,passwordWrite);
       final messageDao = MessageDao();
       print("hi");
       messageDao.saveMessage(message);
     }
   }
 
-  /*Widget _getMessageList() {
-    return Expanded(
-      child: FirebaseAnimatedList(
-        query: widget.messageDao.getMessageQuery(),
-        itemBuilder: (context, snapshot, animation, index) {
-          final json = snapshot.value as Map<dynamic, dynamic>;
-          final message = oUser.fromJson(json);
-          return MessageWidget(message.text, message.date);
-        },
-      ),
+  bool _canSendMessage() => true;
+
+
+
+
+}
+
+
+
+  showAlertDialog(BuildContext context) {
+    // set up the button
+    Widget okButton = TextButton(
+      child: Text("OK"),
+      onPressed: () {},
+    );
+
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text("My title"),
+      content: Text("This is my message."),
+      actions: [
+        okButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
     );
   }
 
+  class authCreateAcc extends auth {}
 
 
-  void _scrollToBottom() {
-    if (_scrollController.hasClients) {
-      _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
-    }
-  }*/
-  bool _canSendMessage() => true;
-}
 
-class MessageList extends StatefulWidget {
-  MessageList({Key key}) : super(key: key);
+  class MessageList extends StatefulWidget {
+  MessageList({Key? key}) : super(key: key);
 
   final messageDao = MessageDao();
 
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
-    throw UnimplementedError();
+  // TODO: implement createState
+  throw UnimplementedError();
   }
 
   //MessageListState createState() => MessageListState();
-}
+  }
+
+
+
