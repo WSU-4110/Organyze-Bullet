@@ -10,17 +10,14 @@ import 'package:organyzebullet_app/screens/screens.dart';
 import '../pallete.dart';
 
 
-
 class viewSearch extends StatelessWidget {
   // final controller = Get.put(NoteController());
   final _database = FirebaseDatabase.instance.reference();
-  final ID = FirebaseAuth.instance.currentUser!.uid;
-
-
 
   @override
   Widget build(BuildContext context) {
-    final notebookName = ModalRoute.of(context)!.settings.arguments as String;
+    final ID = ModalRoute.of(context)!.settings.arguments as String;
+    //final notebookname = Text(args.notebookname)
 
     if(FirebaseAuth.instance.currentUser?.uid != null){
       print ("User is:");
