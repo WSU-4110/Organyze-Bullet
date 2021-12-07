@@ -39,33 +39,33 @@ class notificationTest(unittest.TestCase):
         self.assertGreaterEqual(test, 0)
 
 
-    # def test_current_timestamp(self):
-    #     #calculate current timestamp
-    #     timestamp =  datetime.datetime.now()
-    #     timestampStr = timestamp.strftime("%c")
-    #     parsed_time = parser.parse(timestampStr)
-    #     parsed_time = parsed_time.replace(
-    #         tzinfo=datetime.timezone.utc).timestamp()
+     def test_current_timestamp(self):
+         #calculate current timestamp
+         timestamp =  datetime.datetime.now()
+         timestampStr = timestamp.strftime("%c")
+         parsed_time = parser.parse(timestampStr)
+         parsed_time = parsed_time.replace(
+             tzinfo=datetime.timezone.utc).timestamp()
 
-    #     input = "Fri Dec 3 18:34:56 2021"
-    #     notify_object = notification(input, "1234")
-    #     #calculate current timestamp using the class method
-    #     test = notify_object.current_timestamp()
-    #     #compare both timestamps
-    #     self.assertEqual(test, parsed_time)
+         input = "Fri Dec 3 18:34:56 2021"
+         notify_object = notification(input, "1234")
+         #calculate current timestamp using the class method
+         test = notify_object.current_timestamp()
+         #compare both timestamps
+         self.assertEqual(test, parsed_time)
 
-    # def test_discord_notification(self):
-    #     input = "Fri Dec 3 18:34:56 2021"
-    #     notify_object = notification(input, "1234")
-    #     test = notify_object.discord_notification()
-    #     self.assertLessEqual(test, 1)
+     def test_discord_notification(self):
+         input = "Fri Dec 3 18:34:56 2021"
+         notify_object = notification(input, "1234")
+         test = notify_object.discord_notification()
+         self.assertLessEqual(test, 1)
 
 
-    # def test2_discord_notification(self):
-    #     input = "Fri Dec 30 18:34:56 2021"
-    #     notify_object = notification(input, "1234")
-    #     test = notify_object.discord_notification()
-    #     self.assertGreaterEqual(test, 100)
+     def test2_discord_notification(self):
+         input = "Fri Dec 30 18:34:56 2021"
+         notify_object = notification(input, "1234")
+         test = notify_object.discord_notification()
+         self.assertGreaterEqual(test, 100)
     
 
 
