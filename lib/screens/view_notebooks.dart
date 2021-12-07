@@ -18,9 +18,6 @@ class viewNotebooks extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-
-
     if(FirebaseAuth.instance.currentUser?.uid != null){
       print ("User is:");
       print(FirebaseAuth.instance.currentUser!.uid);
@@ -37,17 +34,20 @@ class viewNotebooks extends StatelessWidget {
             color: Colors.black,
           ),
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.white70,
         centerTitle: true,
         iconTheme: IconThemeData(
           color: Colors.black,
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons.settings), onPressed: () => Navigator.pushNamed(context, 'settings-screen'),
-            //onPressed: () {showSearch(context: context, delegate: SearchBar());},
+            icon: Icon(Icons.share), onPressed: () => Navigator.pushNamed(context, 'add-search'),
           ),
-          SizedBox(height: 25,)
+          SizedBox(height: 25, width: 10),
+          IconButton(
+            icon: Icon(Icons.settings), onPressed: () => Navigator.pushNamed(context, 'settings-screen'),
+          ),
+          SizedBox(height: 25, width: 10)
         ],
       ),
       body: StreamBuilder(
@@ -127,5 +127,8 @@ class viewNotebooks extends StatelessWidget {
   }
 
 
-
+  final Map<String, dynamic> nullSafeMap = {
+      "notebookName": "no notebooks available",
+      "notebookID": 2,
+  };
 }
