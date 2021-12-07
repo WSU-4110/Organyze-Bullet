@@ -64,7 +64,7 @@ class entryModel{
   factory entryModel.fromRTDB(Map<String,dynamic> data){
     return entryModel(
         description: data['description'],// ?? 'Enter a description', //as String,// ?? 'Enter a description',
-        UID: data['entry_id'],// ?? '-0',// as String,// ?? '-0',
+        UID: data['entry-id'],// ?? '-0',// as String,// ?? '-0',
         entryName: data['name'],// ?? 'Enter a Entry name',// as String,// ?? 'Enter a Entry name',
         entryType: data['type'],// ?? 'Enter a Entry type',// as String,// ?? 'Enter a Entry type',
         date: data['timestamp'],// ?? '000'// as String// ?? "00/00/00"

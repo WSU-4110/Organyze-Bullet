@@ -58,14 +58,8 @@ class viewSearch extends StatelessWidget {
           stream: _database.child(path).onValue,
           builder: (context, snapshot) {
             final tilesList = <ListTile>[];
-            print(00);
             if(snapshot.hasError == false){
-              final notebookList = Map<String,dynamic>.from((snapshot.data! as Event).snapshot.value);
-              print(11);
-              notebookList.forEach((key, value) {
-                print(22);
-                final nextNotebook = Map<String,dynamic>.from(value);
-                print(33);
+              final nextNotebook = Map<String,dynamic>.from((snapshot.data! as Event).snapshot.value);
                 final orderTile = ListTile(
                     leading: Icon(Icons.list),
                     onLongPress: () {
@@ -88,8 +82,6 @@ class viewSearch extends StatelessWidget {
                     title: Text(nextNotebook['notebookname']));
                 tilesList.add(orderTile);
               }
-              );
-            }
             else {
               final tilesList = <ListTile>[];
               tilesList.add(ListTile(

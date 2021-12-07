@@ -17,9 +17,9 @@ class addSearch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final ID = TextEditingController();
+    final IDF = TextEditingController();
     final friendNotebook = TextEditingController();
-    ID.addListener(() => {});
+    IDF.addListener(() => {});
     friendNotebook.addListener(() => {});
 
 
@@ -47,7 +47,7 @@ class addSearch extends StatelessWidget {
           child: Column(
             children: [
               TextField(
-                controller: ID,
+                controller: IDF,
                 //controller: controller.titleController,
                 style: TextStyle(
                   fontSize: 27,
@@ -86,10 +86,12 @@ class addSearch extends StatelessWidget {
           ),
         ),
       ),
+
       floatingActionButton: FloatingActionButton(
         //onPressed: () {controller.addNoteToDatabase();},
         onPressed: () {//r.findNotebook(ID.text, friendNotebook.text);
-        Navigator.pushNamed(context, 'viewSearch');},
+          String path = 'Users/$IDF/Notebooks/${friendNotebook.text}';
+        Navigator.pushNamed(context, 'viewSearch',arguments: path );},
         ),
       );
   }
